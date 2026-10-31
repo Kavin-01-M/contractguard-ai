@@ -1,0 +1,12 @@
+[project]
+name = "contractguard-ai"
+version = "0.1.0"
+description = "Evidence-first contract and compliance review workspace"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+testpaths = ["backend/tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 120

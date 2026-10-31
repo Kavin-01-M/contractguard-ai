@@ -1,0 +1,15 @@
+{
+  "routes": [
+    { "path": "/", "title": "Overview" },
+    { "path": "/documents", "title": "Documents" },
+    { "path": "/documents/:id", "title": "Document detail" },
+    { "path": "/obligations", "title": "Obligations" },
+    { "path": "/intelligence", "title": "Compliance Intelligence" },
+    { "path": "/risks", "title": "Risk Center" },
+    { "path": "/findings/:id", "title": "Finding detail" },
+    { "path": "/deadlines", "title": "Deadline Radar" },
+    { "path": "/actions", "title": "Action Center" },
+    { "path": "/audit", "title": "Audit Trail" },
+    { "path": "/settings", "title": "Settings" }
+  ]
+}
