@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import type { Bootstrap } from "../types/domain";
 import { Badge, initials } from "./Primitives";
+import { useAuth } from "../context/AuthContext";
 const nav = [
   { to: "/", label: "Overview", icon: LayoutDashboard },
   { to: "/documents", label: "Documents", icon: FileText },
@@ -32,6 +33,7 @@ const nav = [
   { to: "/settings", label: "Settings", icon: Settings2 },
 ];
 export function AppShell({ data }: { data: Bootstrap | null }) {
+  const { user: authUser, logout: authLogout } = useAuth();
   const [search, setSearch] = useState(""),
     [notify, setNotify] = useState(false),
     [menu, setMenu] = useState(false),
@@ -52,8 +54,8 @@ export function AppShell({ data }: { data: Bootstrap | null }) {
     }
   }
   async function logout() {
-    await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
-    window.location.reload();
+    await authLogout();
+    navigate("/login");
   }
   return (
     <div className="app-shell">
@@ -201,17 +203,17 @@ export function AppShell({ data }: { data: Bootstrap | null }) {
                 }}
               >
                 <span className="profile-avatar">
-                  {initials(data?.user.name || "U")}
+                  {initials(authUser?.name || data?.user.name || "U")}
                 </span>
                 <span className="profile-name">
-                  {data?.user.name || "Reviewer"}
+                  {authUser?.name || data?.user.name || "Reviewer"}
                 </span>
                 <ChevronDown size={14} />
               </button>
               {menu && (
                 <div className="popover profile-menu">
-                  <strong>{data?.user.name}</strong>
-                  <span>{data?.user.email || "Workspace reviewer"}</span>
+                  <strong>{authUser?.name || data?.user.name || "Reviewer"}</strong>
+                  <span>{authUser?.email || data?.user.email || "Workspace reviewer"}</span>
                   {data?.demo_mode && <Badge tone="demo">Synthetic demo</Badge>}
                   <button onClick={logout}>
                     <LogOut size={15} />
