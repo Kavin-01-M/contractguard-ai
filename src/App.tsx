@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Link, Route, Routes } from "react-router-dom";
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import type { Bootstrap } from "./types/domain";
 import { api } from "./lib/api";
